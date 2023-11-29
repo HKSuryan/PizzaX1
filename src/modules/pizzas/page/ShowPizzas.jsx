@@ -52,6 +52,7 @@ useEffect(()=>{
         {pizza.map(pizzas=>{
           return (<><PizzaCard1 key = {pizza.id} pizzas = {pizzas} setCartPizza={setCartPizza} setTotal= {setTotal} total ={total}/></>)}
       )}
+      
         {dbpizza.map(pizzas=>{
           return (<><PizzaCard1 key = {pizza.id} pizzas = {pizzas} setCartPizza={setCartPizza} setTotal= {setTotal} total ={total}/></>)}
       )}
@@ -86,7 +87,9 @@ useEffect(()=>{
       <h1>Total = {total.toFixed(2)}</h1>
       </Typography>
     </CardContent> </Card>
+    <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_MLsiTDhBpU7q9E" async> </script> </form>
     <Button onClick = {()=><><Payment/></>}variant = "contained">Pay Now</Button>
+    
         </div>
     </div>
 
