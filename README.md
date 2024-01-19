@@ -32,6 +32,7 @@ Repository link : https://github.com/HKSuryan/BackendP
 Can utilise a machine learning model so that pizzas are recommended to the user based on their previous choices.
 Making UI better and more fluid
 
+#Know more about me
 Visit my portfolio : https://hksuryan.vercel.app/
 
 
