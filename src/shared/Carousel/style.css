@@ -1,0 +1,48 @@
+body {
+	background-color: green;
+}
+
+.tag {
+	text-align: center;
+}
+
+.slick-slide img {
+	margin: auto;
+	width: 100%;
+	height: 40vh;
+	
+}
+
+.imgslider{
+	
+}
+
+.imga{
+	padding: 4em;
+	object-fit:fill;
+
+	overflow: hidden;
+	mix-blend-mode: color-burn;
+	aspect-ratio: 211/35;
+	/* padding: 0px; 
+	--gridAutoColumns: 100%; 
+	scroll-padding-inline-start: 0px; 
+	--scrollX: auto;
+	--item-padding: 0px;
+	align-items: stretch; 
+	border-width: 0px; 
+	box-sizing: border-box; 
+	display: flex; flex-basis: 
+	auto; flex-direction: 
+	column; flex-shrink: 0; 
+	min-height: 0px; 
+	min-width: 0px; 
+	position: relative; 
+	z-index: 0;
+	--aspect-ratio: 211/35; 
+	--aspect-ratio-m: 211/35; 
+	--aspect-ratio-l: 211/35; 
+	flex: 1 1 0%; */
+	/* (min-width: 1192px)
+	(min-width: 768px)
+	(max-width: 1191px)} */}

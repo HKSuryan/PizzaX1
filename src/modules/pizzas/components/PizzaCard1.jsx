@@ -12,6 +12,22 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
 import productOperations from '../services/product-operations';
+import PizzaContext from '../../../context/PizzaContext';
+import TotalContext from '../../../context/TotalContext';
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardText,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBInput,
+  MDBRow,
+  MDBTypography,
+  } from "mdb-react-ui-kit";
+import { CenterFocusStrong } from '@mui/icons-material';
 
 
 const ExpandMore = styled((props) => {
@@ -25,12 +41,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({pizzas,setCartPizza,setTotal,total}) {
+export default function RecipeReviewCard({pizzas}) {
+  const{piz,setPizzas} = React.useContext(PizzaContext);
+  var {total,setTotal,quantity,setQuantity} = React.useContext(TotalContext);
     const addPizzaToCarts=()=>{
         pizzas.isAddedInCart = true;
         pizzas.quantity += 1;
-        setCartPizza(productOperations.getProductsInCart());
+        // setCartPizza(productOperations.getProductsInCart());
+        setPizzas(productOperations.getProductsInCart());
         total += parseFloat(pizzas.price);
+        quantity += 1;
+        setQuantity(quantity);
         setTotal(total)
     }
   const [expanded, setExpanded] = React.useState(false);
@@ -41,7 +62,7 @@ export default function RecipeReviewCard({pizzas,setCartPizza,setTotal,total}) {
 
   return (
     <div className='col-4'>
-    <Card variant="outlined" sx={{ maxWidth: 345 }}>
+     <MDBCard className="card-registration card-registration-2" style={{ borderRadius: "15px" }}>
 
       <CardMedia
         component="img"
@@ -49,14 +70,14 @@ export default function RecipeReviewCard({pizzas,setCartPizza,setTotal,total}) {
         image={pizzas.url}
         alt="Paella dish"
       />
-      <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <MDBCardBody className="p-0">
+      <Typography gutterBottom variant="h5" component="div" textAlign={'center'}>
             {pizzas.name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div" sx = {{color:"blue"}}>
+          <Typography gutterBottom variant="h5" component="div" textAlign={'center'} sx = {{color:"blue"}}>
             {pizzas.price}
           </Typography>
-      </CardContent>
+      </MDBCardBody>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -86,6 +107,8 @@ export default function RecipeReviewCard({pizzas,setCartPizza,setTotal,total}) {
           Add To Cart
         </Button>
       </CardActions>
-    </Card></div>
+    </MDBCard>
+    <hr className="my-4" />
+    </div>
   );
 }

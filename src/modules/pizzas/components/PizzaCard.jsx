@@ -5,29 +5,41 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import productOperations from '../services/product-operations';
+import PizzaContext from '../../../context/PizzaContext';
+import TotalContext from '../../../context/TotalContext';
 
-export default function MultiActionAreaCard({pizzas,setCartPizza,setTotal,total}) {
+export default function MultiActionAreaCard({pizzas}) {
+    const{piz,setPizzas} = React.useContext(PizzaContext);
+    var {total,setTotal,quantity,setQuantity} = React.useContext(TotalContext);
     const addPizzaToCarts=()=>{
         pizzas.isAddedInCart = true;
         pizzas.quantity += 1;
-        setCartPizza(productOperations.getProductsInCart());
+        // setCartPizza(productOperations.getProductsInCart());
+        setPizzas(productOperations.getProductsInCart());
+        console.log("This is the context " +piz);
         total += parseFloat(pizzas.price);
+        quantity += 1;
+        setQuantity(quantity);
         setTotal(total)
     }
     const removePizzaFromCarts=()=>{
         if(pizzas.quantity >1){
             pizzas.quantity -= 1;
+            quantity -= 1;
             total -= parseFloat(pizzas.price);
-            if(total<0){setTotal(0)}
-            else{setTotal(total)}
+            if(total<0){setTotal(0);setQuantity(0)}
+            else{setTotal(total);setQuantity(quantity);}
         }
         else{
             pizzas.quantity -= 1
+            quantity -= 1;
+
             total -= parseFloat(pizzas.price);
-            if(total<0){setTotal(0)}
-            else{setTotal(total)}
+            if(total<0){setTotal(0);setQuantity(0)}
+            else{setTotal(total);setQuantity(quantity);}
             pizzas.isAddedInCart = false;}
-        setCartPizza(productOperations.getProductsInCart());
+        // setCartPizza(productOperations.getProductsInCart());
+        setPizzas(productOperations.getProductsInCart());
     }
   return (
 
