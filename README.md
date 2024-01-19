@@ -28,6 +28,10 @@ There is also a sign in page for users to register themselves.\
 Backend of the project was made using ExpressJS connected to mongoDB \
 Repository link : https://github.com/HKSuryan/BackendP
 
+# Payments 
+For payments Razorpay was integerated into the web app \
+Just place a valid Razorpay test key in the key field in the options of the Cart1.jsx component and you are good to go for accepting payments .
+
 # Future Scope
 Can utilise a machine learning model so that pizzas are recommended to the user based on their previous choices.\
 Making UI better and more fluid
