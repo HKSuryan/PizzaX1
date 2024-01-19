@@ -52,6 +52,29 @@
 import React from 'react'
 
 export default function Payment() {
+  const loadscript = (src)=>{
+    return new Promise((resolve)=>{
+      const script = document.createElement('script')
+      script.src = src
+
+      script.onload=()=>{
+        resolve(true)
+      }
+      script.onerror=()=>{
+        resolve(false)
+      }
+      document.body.appendChild(script)
+
+    })
+  }
+  const displayRazorpay = async(amount)=>{
+    const res = await loadscript('https://checkout.razorpay.com/v1/checkout.js')
+
+    if(!res){
+      alert('You are Offline Failed to Load');
+      return;
+    }
+  }
   return (
     <div>Payment</div>
   )

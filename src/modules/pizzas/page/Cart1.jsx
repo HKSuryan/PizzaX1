@@ -17,6 +17,47 @@ import TotalContext from "../../../context/TotalContext";
 import PizzaCardCart from "../components/PizzaCardCart";
     
     export default function Cart1() {
+      const loadscript = (src)=>{
+        return new Promise((resolve)=>{
+          const script = document.createElement('script')
+          script.src = src
+    
+          script.onload=()=>{
+            resolve(true)
+          }
+          script.onerror=()=>{
+            resolve(false)
+          }
+          document.body.appendChild(script)
+    
+        })
+      }
+      const displayRazorpay = async(amount)=>{
+        const res = await loadscript('https://checkout.razorpay.com/v1/checkout.js')
+    
+        if(!res){
+          alert('You are Offline Failed to Load');
+          return;
+        }
+
+        const options = {
+          key : "",//Enter valid razorpay testid
+          currency:"INR",
+          amount :amount*100,
+          name:"PizzaX",
+          description:"Thanks for shopping with us",
+          handler : function(response){
+            alert(response.razorpay_payment_id)
+            alert("Payment is Successful")
+          },
+          prefill:{
+            name:"PizzaX"
+          }
+          // if(response.razorpay_payment_id)
+        };
+        const paymentObject = new window.Razorpay(options)
+        paymentObject.open()
+      }
         const {piz} = useContext(PizzaContext);
         var {total,setTotal,quantity} = useContext(TotalContext);
         const shipping = 5;
@@ -92,7 +133,7 @@ return(<>
                         <MDBTypography tag="h5">{(total+shipping).toFixed(2)}</MDBTypography>
                       </div>
     
-                      <MDBBtn color="dark" block size="lg">
+                      <MDBBtn color="dark" block size="lg" onClick={()=>displayRazorpay(total)}>
                         Pay Now
                       </MDBBtn>
                     </div>
