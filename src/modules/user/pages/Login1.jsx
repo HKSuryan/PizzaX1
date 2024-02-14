@@ -23,7 +23,7 @@ function Login1() {
             'password':pwd.current.value
         }
         try{
-            const response = await networkOperations.postData(process.env.REACT_APP_LOGIN,userInfo);
+            const response = await networkOperations.postData("https://jmd-kwob.onrender.com/login",userInfo);
             console.log("Response is",response);
             setMessage(response.data.message);
             setUser(response.data.name);

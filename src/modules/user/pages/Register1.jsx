@@ -27,7 +27,7 @@ function Register1() {
             'phone':phone.current.value
         }
         try{
-        const response = await networkOperations.postData(process.env.REACT_APP_REGISTER,userInfo);
+        const response = await networkOperations.postData("https://jmd-kwob.onrender.com/register",userInfo);
         setMessage(response.data.message);
         console.log("Response is ",response);
     }

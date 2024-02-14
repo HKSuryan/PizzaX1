@@ -20,7 +20,7 @@ export const AddPizza = () => {
             'pizzaPrice':price.current.value
         }
         try{
-        const response = await networkOperations.postData(process.env.REACT_APP_PIZZA_ADD,userInfo);
+        const response = await networkOperations.postData("https://jmd-kwob.onrender.com/addpizza",userInfo);
         setMessage(response.data.message);
         console.log("Response is ",response);
     }

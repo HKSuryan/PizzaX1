@@ -6,7 +6,7 @@ const productOperations = {
     products:[],
     dbproducts:[],
     async loadProducts(){
-        const pizza = await networkOperations.getData(process.env.REACT_APP_URL);
+        const pizza = await networkOperations.getData('https://raw.githubusercontent.com/Skill-risers/pizzajson/main/pizza.json');
         const pizzaArray = pizza['Vegetarian'];
         const productArray = pizzaArray.map(pizza=>{
             const currentPizza = new Product(pizza.id,pizza.name,pizza.menu_description,pizza.price,pizza.assets.product_details_page[0].url)
@@ -18,7 +18,7 @@ const productOperations = {
         return productArray;
     },
     async loaddbProducts(){
-        const pizza = await networkOperations.getData(process.env.REACT_APP_PIZZA_SHOW);
+        const pizza = await networkOperations.getData('https://jmd-kwob.onrender.com/showpizza');
         const pizzaArray = pizza;
         console.log(pizza);
         const productArray = pizzaArray.map(pizza=>{
